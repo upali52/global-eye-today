@@ -172,3 +172,11 @@ export function getPostsByCategory(category: string): Post[] {
 }
 
 export const categories = ["World", "Technology", "Business", "Science", "Sports"]
+
+export const categoryConfig: Record<string, { hex: string; light: string; letter: string }> = {
+  World:      { hex: "#2563eb", light: "#eff6ff", letter: "W" },
+  Technology: { hex: "#7c3aed", light: "#f5f3ff", letter: "T" },
+  Business:   { hex: "#059669", light: "#ecfdf5", letter: "B" },
+  Science:    { hex: "#d97706", light: "#fffbeb", letter: "S" },
+  Sports:     { hex: "#dc2626", light: "#fff1f2", letter: "Sp" },
+}

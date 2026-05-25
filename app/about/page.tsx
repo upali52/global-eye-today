@@ -4,27 +4,19 @@ import { categoryConfig, categories } from "@/lib/posts"
 
 export const metadata = { title: "About Us" }
 
-const team = [
-  { name: "Sarah Mitchell", role: "World Affairs Editor", initial: "S" },
-  { name: "James Okafor", role: "Technology Editor", initial: "J" },
-  { name: "Priya Nair", role: "Business Editor", initial: "P" },
-  { name: "David Chen", role: "Science Correspondent", initial: "D" },
-  { name: "Yuki Tanaka", role: "Sports Editor", initial: "Y" },
-  { name: "Maria Santos", role: "Environment Reporter", initial: "M" },
-]
-
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto">
+
       {/* Hero */}
       <div className="text-center mb-12">
         <Image src="/logo.svg" alt="Global Eye Today" width={280} height={64} className="mx-auto mb-6 h-14 w-auto" />
         <p className="text-xl text-gray-600 leading-relaxed">
-          Your window to the world — delivering accurate, timely, and independent journalism since 2020.
+          Your window to the world — delivering accurate, timely, and independent journalism.
         </p>
       </div>
 
-      {/* Mission */}
+      {/* Founder profile */}
       <div className="bg-gray-900 text-white rounded-2xl p-8 mb-10 relative overflow-hidden">
         <div className="absolute right-6 top-6 opacity-10">
           <svg width="100" height="100" viewBox="0 0 64 64" fill="none" stroke="white" strokeWidth="2">
@@ -35,18 +27,59 @@ export default function AboutPage() {
             <circle cx="32" cy="32" r="5" fill="white"/>
           </svg>
         </div>
-        <h2 className="text-xl font-black uppercase tracking-wide text-red-400 mb-3">Our Mission</h2>
-        <p className="text-gray-300 leading-relaxed text-lg">
-          To be the most trusted window to the world — providing clear, context-rich journalism
-          that helps our readers understand complex global events and make informed decisions.
+        <div className="flex items-center gap-5 mb-5">
+          <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-2xl font-black text-white flex-shrink-0">
+            U
+          </div>
+          <div>
+            <h2 className="text-2xl font-black text-white">Upali Tennakoon</h2>
+            <p className="text-red-400 font-bold text-sm uppercase tracking-wide">Founder &amp; Editor-in-Chief</p>
+          </div>
+        </div>
+        <p className="text-gray-300 leading-relaxed text-base mb-3">
+          Upali Tennakoon is a veteran Sri Lankan journalist and media entrepreneur with decades of experience
+          in print and digital journalism.
+        </p>
+        <p className="text-gray-300 leading-relaxed text-base mb-3">
+          He is the Founder and Editor-in-Chief of <span className="text-white font-bold">Rivira</span>, one of
+          Sri Lanka&apos;s leading Sunday newspapers, and a Founding Member of
+          <span className="text-white font-bold"> Divain</span>, where he served as Editor-in-Chief for ten years.
+        </p>
+        <p className="text-gray-300 leading-relaxed text-base">
+          With Global Eye Today, Upali brings his wealth of editorial expertise to international news,
+          offering readers a trusted, independent window to world events.
         </p>
       </div>
 
-      {/* Values */}
+      {/* Career highlights */}
+      <div className="mb-10">
+        <div className="flex items-center gap-3 mb-5">
+          <span className="w-1 h-6 rounded bg-red-600 block" />
+          <h2 className="text-lg font-black uppercase tracking-widest text-gray-700">Career Highlights</h2>
+        </div>
+        <div className="space-y-4">
+          {[
+            { year: "2024 – Present", role: "Founder & Editor-in-Chief", org: "Global Eye Today", color: "#dc2626" },
+            { year: "10+ Years", role: "Founder Member & Editor-in-Chief", org: "Divain", color: "#2563eb" },
+            { year: "Founder", role: "Founder & Editor-in-Chief", org: "Rivira Sunday Newspaper", color: "#7c3aed" },
+          ].map((item) => (
+            <div key={item.org} className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100">
+              <div className="w-1 h-12 rounded flex-shrink-0" style={{ backgroundColor: item.color }} />
+              <div>
+                <p className="font-black text-gray-900">{item.org}</p>
+                <p className="text-sm text-gray-600">{item.role}</p>
+                <p className="text-xs font-bold mt-0.5" style={{ color: item.color }}>{item.year}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Mission */}
       <div className="grid sm:grid-cols-3 gap-5 mb-12">
         {[
           { title: "Independence", desc: "We answer only to our readers — no political affiliations, no advertiser influence.", color: "#2563eb" },
-          { title: "Accuracy", desc: "Every story is verified by at least two independent sources before publication.", color: "#dc2626" },
+          { title: "Accuracy", desc: "Every story is verified by trusted sources before publication.", color: "#dc2626" },
           { title: "Transparency", desc: "We correct mistakes publicly and explain our editorial decisions openly.", color: "#059669" },
         ].map((v) => (
           <div key={v.title} className="p-5 rounded-xl border-2" style={{ borderColor: v.color + "33", backgroundColor: v.color + "08" }}>
@@ -55,34 +88,6 @@ export default function AboutPage() {
             <p className="text-sm text-gray-600 leading-relaxed">{v.desc}</p>
           </div>
         ))}
-      </div>
-
-      {/* Team */}
-      <div className="mb-12">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-1 h-6 rounded bg-red-600 block" />
-          <h2 className="text-lg font-black uppercase tracking-widest text-gray-700">Our Team</h2>
-        </div>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {team.map((member, i) => {
-            const colors = ["#2563eb", "#dc2626", "#7c3aed", "#059669", "#d97706", "#0891b2"]
-            const color = colors[i % colors.length]
-            return (
-              <div key={member.name} className="flex items-center gap-3 p-4 rounded-xl bg-gray-50">
-                <div
-                  className="w-11 h-11 rounded-full flex items-center justify-center font-black text-white text-lg flex-shrink-0"
-                  style={{ backgroundColor: color }}
-                >
-                  {member.initial}
-                </div>
-                <div>
-                  <p className="font-bold text-sm text-gray-900">{member.name}</p>
-                  <p className="text-xs text-gray-500">{member.role}</p>
-                </div>
-              </div>
-            )
-          })}
-        </div>
       </div>
 
       {/* Coverage areas */}
@@ -108,17 +113,18 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Contact CTA */}
+      {/* Contact */}
       <div className="text-center bg-red-50 border border-red-100 rounded-2xl p-8">
         <h3 className="text-xl font-black mb-2">Get in Touch</h3>
-        <p className="text-gray-600 mb-4 text-sm">Tips, feedback, or press inquiries — we want to hear from you.</p>
+        <p className="text-gray-600 mb-4 text-sm">News tips, feedback, or press inquiries — we want to hear from you.</p>
         <a
-          href="mailto:contact@globaleyetoday.com"
+          href="mailto:editor@globleeyetoday.com"
           className="inline-block bg-red-600 text-white font-bold px-6 py-2.5 rounded-full hover:bg-red-700 transition-colors text-sm"
         >
-          contact@globaleyetoday.com
+          editor@globleeyetoday.com
         </a>
       </div>
+
     </div>
   )
 }

@@ -2,6 +2,7 @@ import Link from "next/link"
 import { posts, categories, categoryConfig } from "@/lib/posts"
 import { fetchByCategory, fetchTopHeadlines, type NewsArticle } from "@/lib/newsapi"
 import { ArticleCard } from "@/app/components/ArticleCard"
+import BackButton from "@/app/components/BackButton"
 
 export const revalidate = 3600
 
@@ -45,6 +46,11 @@ export default async function BlogPage({
 
   return (
     <div>
+      {/* Back navigation */}
+      <div className="mb-4">
+        <BackButton label="Back to Home" />
+      </div>
+
       {/* Header */}
       <div className="mb-8">
         {category && cfg ? (

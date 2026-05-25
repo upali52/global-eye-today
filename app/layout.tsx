@@ -3,6 +3,7 @@ import { Geist } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
 import SubscribeModal from "@/app/components/SubscribeModal"
+import BackToTop from "@/app/components/BackToTop"
 import "./globals.css"
 
 const geist = Geist({ subsets: ["latin"] })
@@ -54,8 +55,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </div>
 
-        {/* Header */}
-        <header className="border-b border-gray-200">
+        {/* Header — sticky so nav is always visible */}
+        <header className="border-b border-gray-200 sticky top-0 z-40 bg-white shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
@@ -112,6 +113,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8">
           {children}
         </main>
+
+        <BackToTop />
 
         {/* Footer */}
         <footer className="bg-gray-900 text-gray-400 mt-12">

@@ -2,6 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getPost, posts, categoryConfig } from "@/lib/posts"
 import ShareButtons from "@/app/components/ShareButtons"
+import BackButton from "@/app/components/BackButton"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -26,6 +27,14 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Back bar */}
+      <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+        <BackButton label="Back to News" />
+        <Link href="/" className="text-xs text-gray-400 hover:text-red-600 transition-colors font-semibold">
+          🏠 Home
+        </Link>
+      </div>
+
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
         <Link href="/" className="hover:text-gray-900 transition-colors">Home</Link>
@@ -166,11 +175,11 @@ export default async function PostPage({ params }: Props) {
         </div>
       )}
 
-      {/* Back */}
-      <div className="mt-8 pt-6">
-        <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-bold text-red-600 hover:text-red-700 transition-colors">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          Back to all stories
+      {/* Bottom navigation */}
+      <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+        <BackButton label="Back to News" />
+        <Link href="/" className="text-sm font-bold text-gray-500 hover:text-red-600 transition-colors">
+          🏠 Home
         </Link>
       </div>
     </div>

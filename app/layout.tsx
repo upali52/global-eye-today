@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
+import SubscribeModal from "@/app/components/SubscribeModal"
 import "./globals.css"
 
 const geist = Geist({ subsets: ["latin"] })
@@ -87,12 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* Date + Subscribe */}
             <div className="hidden md:flex items-center gap-4">
               <span className="text-xs text-gray-400">Sunday, May 25, 2026</span>
-              <a
-                href="#"
-                className="bg-red-600 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-red-700 transition-colors"
-              >
-                Subscribe
-              </a>
+              <SubscribeModal />
             </div>
           </div>
 

@@ -48,7 +48,7 @@ export default async function BlogPage({
     <div>
       {/* Back navigation */}
       <div className="mb-4">
-        <BackButton label="Back to Home" />
+        <BackButton label="Back to Home" href="/" />
       </div>
 
       {/* Header */}

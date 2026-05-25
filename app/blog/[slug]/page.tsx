@@ -29,7 +29,7 @@ export default async function PostPage({ params }: Props) {
     <div className="max-w-4xl mx-auto">
       {/* Back bar */}
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-        <BackButton label="Back to News" />
+        <BackButton label="Back to News" href="/blog" />
         <Link href="/" className="text-xs text-gray-400 hover:text-red-600 transition-colors font-semibold">
           🏠 Home
         </Link>
@@ -177,7 +177,7 @@ export default async function PostPage({ params }: Props) {
 
       {/* Bottom navigation */}
       <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
-        <BackButton label="Back to News" />
+        <BackButton label="Back to News" href="/blog" />
         <Link href="/" className="text-sm font-bold text-gray-500 hover:text-red-600 transition-colors">
           🏠 Home
         </Link>

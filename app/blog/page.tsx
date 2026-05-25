@@ -110,9 +110,9 @@ export default async function BlogPage({
           return (
             <Link
               key={article.id + i}
-              href={article.url}
-              target={article.isExternal ? "_blank" : undefined}
-              rel={article.isExternal ? "noopener noreferrer" : undefined}
+              href={article.isExternal
+                ? `/news?${new URLSearchParams({ title: article.title, excerpt: article.excerpt, url: article.url, source: article.source, author: article.author, date: article.date, category: article.category, ...(article.imageUrl ? { image: article.imageUrl } : {}) }).toString()}`
+                : article.url}
               className="group flex gap-5 py-6"
             >
               <div

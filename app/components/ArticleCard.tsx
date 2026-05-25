@@ -3,11 +3,25 @@ import Image from "next/image"
 import { categoryConfig } from "@/lib/posts"
 import type { NewsArticle } from "@/lib/newsapi"
 
+function buildPreviewUrl(article: NewsArticle): string {
+  const params = new URLSearchParams({
+    title:    article.title,
+    excerpt:  article.excerpt,
+    url:      article.url,
+    source:   article.source,
+    author:   article.author,
+    date:     article.date,
+    category: article.category,
+    ...(article.imageUrl ? { image: article.imageUrl } : {}),
+  })
+  return `/news?${params.toString()}`
+}
+
 export function ArticleCard({ article, size = "normal" }: { article: NewsArticle; size?: "large" | "normal" | "small" }) {
   const cfg = categoryConfig[article.category] ?? { hex: "#dc2626", light: "#fff1f2" }
-  const href = article.isExternal ? article.url : article.url
-  const target = article.isExternal ? "_blank" : undefined
-  const rel = article.isExternal ? "noopener noreferrer" : undefined
+  const href = article.isExternal ? buildPreviewUrl(article) : article.url
+  const target = undefined
+  const rel = undefined
 
   if (size === "large") {
     return (

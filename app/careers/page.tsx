@@ -24,7 +24,7 @@ export default function CareersPage() {
         </div>
         <div className="space-y-4">
           {[
-            { title: "News Reporter", type: "Full-time / Remote", desc: "Cover breaking news across World, Technology, and Business categories." },
+            { title: "News Reporter", type: "Part-time / Remote", desc: "Cover breaking news across World, Technology, and Business categories." },
             { title: "Social Media Editor", type: "Part-time / Remote", desc: "Manage and grow our social media presence across platforms." },
             { title: "Freelance Correspondent", type: "Freelance", desc: "Contribute articles and reports from your region or area of expertise." },
           ].map((job) => (

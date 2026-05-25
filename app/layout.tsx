@@ -151,9 +151,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div>
                 <h4 className="text-white font-bold mb-3 text-sm uppercase tracking-wide">Company</h4>
                 <ul className="space-y-2 text-sm">
-                  {["About Us", "Contact", "Careers", "Privacy Policy", "Terms of Service"].map((item) => (
-                    <li key={item}>
-                      <a href="#" className="hover:text-white transition-colors">{item}</a>
+                  {[
+                    { label: "About Us",        href: "/about"   },
+                    { label: "Contact",          href: "/contact" },
+                    { label: "Careers",          href: "/careers" },
+                    { label: "Privacy Policy",   href: "/privacy" },
+                    { label: "Terms of Service", href: "/terms"   },
+                  ].map((item) => (
+                    <li key={item.label}>
+                      <Link href={item.href} className="hover:text-white transition-colors">{item.label}</Link>
                     </li>
                   ))}
                 </ul>

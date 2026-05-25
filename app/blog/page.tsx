@@ -111,7 +111,7 @@ export default async function BlogPage({
             <Link
               key={article.id + i}
               href={article.isExternal
-                ? `/news?${new URLSearchParams({ title: article.title, excerpt: article.excerpt, url: article.url, source: article.source, author: article.author, date: article.date, category: article.category, ...(article.imageUrl ? { image: article.imageUrl } : {}) }).toString()}`
+                ? `/news?${new URLSearchParams({ title: article.title, excerpt: article.excerpt, src: Buffer.from(article.url).toString("base64url"), source: article.source, author: article.author, date: article.date, category: article.category, ...(article.imageUrl ? { image: article.imageUrl } : {}) }).toString()}`
                 : article.url}
               className="group flex gap-5 py-6"
             >

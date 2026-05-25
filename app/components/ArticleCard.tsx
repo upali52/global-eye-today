@@ -4,10 +4,11 @@ import { categoryConfig } from "@/lib/posts"
 import type { NewsArticle } from "@/lib/newsapi"
 
 function buildPreviewUrl(article: NewsArticle): string {
+  const src = Buffer.from(article.url).toString("base64url")
   const params = new URLSearchParams({
     title:    article.title,
     excerpt:  article.excerpt,
-    url:      article.url,
+    src,
     source:   article.source,
     author:   article.author,
     date:     article.date,

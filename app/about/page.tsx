@@ -43,7 +43,7 @@ export default function AboutPage() {
         <p className="text-gray-300 leading-relaxed text-base mb-3">
           He is the Founder and Editor-in-Chief of <span className="text-white font-bold">Rivira</span>, one of
           Sri Lanka&apos;s leading Sunday newspapers, and a Founding Member of
-          <span className="text-white font-bold"> Divain</span>, where he served as Editor-in-Chief for ten years.
+          <span className="text-white font-bold"> Divaina</span>, where he served as Editor-in-Chief for ten years.
         </p>
         <p className="text-gray-300 leading-relaxed text-base">
           With Global Eye Today, Upali brings his wealth of editorial expertise to international news,
@@ -60,7 +60,7 @@ export default function AboutPage() {
         <div className="space-y-4">
           {[
             { year: "2024 – Present", role: "Founder & Editor-in-Chief", org: "Global Eye Today", color: "#dc2626" },
-            { year: "10+ Years", role: "Founder Member & Editor-in-Chief", org: "Divain", color: "#2563eb" },
+            { year: "10+ Years", role: "Founder Member & Editor-in-Chief", org: "Divaina", color: "#2563eb" },
             { year: "Founder", role: "Founder & Editor-in-Chief", org: "Rivira Sunday Newspaper", color: "#7c3aed" },
           ].map((item) => (
             <div key={item.org} className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100">

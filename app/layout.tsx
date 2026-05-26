@@ -5,6 +5,7 @@ import Link from "next/link"
 import SubscribeModal from "@/app/components/SubscribeModal"
 import BackToTop from "@/app/components/BackToTop"
 import DarkModeToggle from "@/app/components/DarkModeToggle"
+import DateDisplay from "@/app/components/DateDisplay"
 import "./globals.css"
 
 const geist = Geist({ subsets: ["latin"] })
@@ -90,10 +91,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
 
-            {/* Date + Subscribe + Dark toggle */}
-            <div className="hidden md:flex items-center gap-3">
-              <span className="text-xs text-gray-400 dark:text-gray-500">Sunday, May 25, 2026</span>
-              <SubscribeModal />
+            {/* Right side controls */}
+            <div className="flex items-center gap-3">
+              <div className="hidden md:flex items-center gap-3">
+                <DateDisplay />
+                <SubscribeModal />
+              </div>
+              {/* Dark mode toggle — always visible */}
               <DarkModeToggle />
             </div>
           </div>

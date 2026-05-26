@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #111827;
@@ -14,6 +16,20 @@
 body {
   background: #ffffff;
   color: #111827;
+}
+
+html.dark body {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+html.dark .article-body p,
+html.dark .article-body li {
+  color: #cbd5e1;
+}
+
+html.dark .article-body h3 {
+  color: #f1f5f9;
 }
 
 /* Breaking news ticker */

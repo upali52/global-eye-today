@@ -3,15 +3,28 @@ import Image from "next/image"
 import { categoryConfig } from "@/lib/posts"
 import type { NewsArticle } from "@/lib/newsapi"
 
+function articleViewUrl(article: NewsArticle): string {
+  if (!article.isExternal) return article.url
+  const data = {
+    title: article.title,
+    excerpt: article.excerpt ?? "",
+    category: article.category,
+    date: article.date,
+    author: article.author,
+    source: article.source,
+    url: article.url,
+    imageUrl: article.imageUrl,
+  }
+  return `/news/view?d=${Buffer.from(JSON.stringify(data)).toString("base64url")}`
+}
+
 export function ArticleCard({ article, size = "normal" }: { article: NewsArticle; size?: "large" | "normal" | "small" }) {
   const cfg = categoryConfig[article.category] ?? { hex: "#dc2626", light: "#fff1f2" }
-  const href = article.url
-  const target = article.isExternal ? "_blank" : undefined
-  const rel = article.isExternal ? "noopener noreferrer" : undefined
+  const href = articleViewUrl(article)
 
   if (size === "large") {
     return (
-      <Link href={href} target={target} rel={rel} className="group block">
+      <Link href={href} className="group block">
         <div
           className="rounded-xl overflow-hidden h-72 flex flex-col justify-end p-6 relative"
           style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)" }}
@@ -25,9 +38,7 @@ export function ArticleCard({ article, size = "normal" }: { article: NewsArticle
               unoptimized
             />
           )}
-          {/* Dark overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-          {/* Watermark icon */}
           <div className="absolute top-4 right-4 opacity-10">
             <svg width="80" height="80" viewBox="0 0 64 64" fill="none" stroke="white" strokeWidth="2.5">
               <path d="M4 32 C14 10 50 10 60 32 C50 54 14 54 4 32Z"/>
@@ -55,7 +66,6 @@ export function ArticleCard({ article, size = "normal" }: { article: NewsArticle
               <span>{article.author}</span>
               <span>•</span>
               <span>{article.date}</span>
-              {article.isExternal && <span className="ml-auto text-gray-500">↗ Read at source</span>}
             </div>
           </div>
         </div>
@@ -65,7 +75,7 @@ export function ArticleCard({ article, size = "normal" }: { article: NewsArticle
 
   if (size === "small") {
     return (
-      <Link href={href} target={target} rel={rel} className="group flex gap-3">
+      <Link href={href} className="group flex gap-3">
         <div
           className="w-16 h-14 rounded flex-shrink-0 flex items-center justify-center overflow-hidden"
           style={{ backgroundColor: cfg.light }}
@@ -78,7 +88,7 @@ export function ArticleCard({ article, size = "normal" }: { article: NewsArticle
         </div>
         <div className="flex-1 min-w-0">
           <span className="cat-badge" style={{ backgroundColor: cfg.light, color: cfg.hex }}>{article.category}</span>
-          <h3 className="text-sm font-bold leading-snug group-hover:text-red-600 transition-colors line-clamp-2 mt-0.5">
+          <h3 className="text-sm font-bold leading-snug group-hover:text-red-600 transition-colors line-clamp-2 mt-0.5 text-gray-900 dark:text-gray-100">
             {article.title}
           </h3>
           <div className="flex items-center gap-1 text-xs text-gray-400 mt-0.5">
@@ -90,7 +100,7 @@ export function ArticleCard({ article, size = "normal" }: { article: NewsArticle
   }
 
   return (
-    <Link href={href} target={target} rel={rel} className="group flex gap-4">
+    <Link href={href} className="group flex gap-4">
       <div
         className="w-24 h-20 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden"
         style={{ backgroundColor: cfg.light }}
@@ -106,13 +116,12 @@ export function ArticleCard({ article, size = "normal" }: { article: NewsArticle
           <span className="cat-badge" style={{ backgroundColor: cfg.light, color: cfg.hex }}>{article.category}</span>
           <span className="text-xs text-gray-400">{article.source}</span>
         </div>
-        <h3 className="font-bold text-sm leading-snug group-hover:text-red-600 transition-colors line-clamp-2">
+        <h3 className="font-bold text-sm leading-snug group-hover:text-red-600 transition-colors line-clamp-2 text-gray-900 dark:text-gray-100">
           {article.title}
         </h3>
-        <p className="text-xs text-gray-500 mt-1 line-clamp-1">{article.excerpt}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">{article.excerpt}</p>
         <div className="flex items-center gap-2 mt-1 text-xs text-gray-400">
           <span>{article.author}</span><span>•</span><span>{article.date}</span>
-          {article.isExternal && <span className="text-gray-400">↗</span>}
         </div>
       </div>
     </Link>

@@ -104,15 +104,25 @@ export default async function BlogPage({
       </div>
 
       {/* Articles */}
-      <div className="divide-y divide-gray-100">
+      <div className="divide-y divide-gray-100 dark:divide-gray-800">
         {articles.map((article, i) => {
           const c = categoryConfig[article.category] ?? { hex: "#dc2626", light: "#fff1f2" }
+          const href = article.isExternal
+            ? `/news/view?d=${Buffer.from(JSON.stringify({
+                title: article.title,
+                excerpt: article.excerpt ?? "",
+                category: article.category,
+                date: article.date,
+                author: article.author,
+                source: article.source,
+                url: article.url,
+                imageUrl: article.imageUrl,
+              })).toString("base64url")}`
+            : article.url
           return (
             <Link
               key={article.id + i}
-              href={article.url}
-              target={article.isExternal ? "_blank" : undefined}
-              rel={article.isExternal ? "noopener noreferrer" : undefined}
+              href={href}
               className="group flex gap-5 py-6"
             >
               <div
@@ -135,12 +145,12 @@ export default async function BlogPage({
                   <span className="text-xs text-gray-400 font-medium">{article.source}</span>
                   <span className="text-xs text-gray-300">•</span>
                   <span className="text-xs text-gray-400">{article.date}</span>
-                  {article.isExternal && <span className="ml-auto text-xs text-gray-400">↗ External</span>}
+                  {article.isExternal && <span className="ml-auto text-xs text-gray-400">{article.source}</span>}
                 </div>
-                <h2 className="text-lg font-black leading-snug group-hover:text-red-600 transition-colors mb-1.5 line-clamp-2">
+                <h2 className="text-lg font-black leading-snug group-hover:text-red-600 transition-colors mb-1.5 line-clamp-2 text-gray-900 dark:text-gray-100">
                   {article.title}
                 </h2>
-                <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">{article.excerpt}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2">{article.excerpt}</p>
                 <p className="text-xs text-gray-400 mt-2">By {article.author}</p>
               </div>
             </Link>

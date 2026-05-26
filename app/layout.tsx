@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import SubscribeModal from "@/app/components/SubscribeModal"
 import BackToTop from "@/app/components/BackToTop"
+import DarkModeToggle from "@/app/components/DarkModeToggle"
 import "./globals.css"
 
 const geist = Geist({ subsets: ["latin"] })
@@ -41,7 +42,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en" className={geist.className}>
-      <body className="min-h-screen flex flex-col bg-white text-gray-900">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `try{const s=localStorage.getItem('theme');const p=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(s===null&&p))document.documentElement.classList.add('dark')}catch(e){}` }} />
+      </head>
+      <body className="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-gray-900 dark:text-gray-100">
 
         {/* Breaking news ticker */}
         <div className="bg-red-600 text-white flex items-center overflow-hidden h-8">
@@ -56,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {/* Header — sticky so nav is always visible */}
-        <header className="border-b border-gray-200 sticky top-0 z-40 bg-white shadow-sm">
+        <header className="border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40 bg-white dark:bg-slate-950 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
@@ -76,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <input
                   type="search"
                   placeholder="Search stories..."
-                  className="w-full border border-gray-300 rounded-full px-4 py-1.5 text-sm focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 pr-9"
+                  className="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 rounded-full px-4 py-1.5 text-sm focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 pr-9"
                 />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -86,10 +90,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
 
-            {/* Date + Subscribe */}
-            <div className="hidden md:flex items-center gap-4">
-              <span className="text-xs text-gray-400">Sunday, May 25, 2026</span>
+            {/* Date + Subscribe + Dark toggle */}
+            <div className="hidden md:flex items-center gap-3">
+              <span className="text-xs text-gray-400 dark:text-gray-500">Sunday, May 25, 2026</span>
               <SubscribeModal />
+              <DarkModeToggle />
             </div>
           </div>
 

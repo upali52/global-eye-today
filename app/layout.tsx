@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Header — sticky so nav is always visible */}
         <header className="border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40 bg-white dark:bg-slate-950 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
-            {/* Logo */}
+            {/* Logo — light and dark versions */}
             <Link href="/" className="flex-shrink-0">
               <Image
                 src="/logo.svg"
@@ -71,7 +71,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 width={240}
                 height={54}
                 priority
-                className="h-12 w-auto"
+                className="h-12 w-auto dark:hidden"
+              />
+              <Image
+                src="/logo-dark.svg"
+                alt="Global Eye Today"
+                width={240}
+                height={54}
+                priority
+                className="h-12 w-auto hidden dark:block"
               />
             </Link>
 

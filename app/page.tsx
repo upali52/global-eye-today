@@ -46,7 +46,7 @@ export default async function HomePage() {
           <span className="text-xs font-bold text-red-600 uppercase tracking-wide flex-shrink-0">Live News</span>
           <span className="text-xs text-gray-600 truncate">Auto-updating every hour from global sources</span>
           <span className="ml-auto text-xs text-gray-400 flex-shrink-0">
-            {new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
+            {new Date().toLocaleTimeString("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", minute: "2-digit" })} PT
           </span>
         </div>
       )}
